@@ -14,7 +14,7 @@ fn_check_is_in_tmux(){
 		fn_print_information_nl "LinuxGSM creates a tmux session when starting the server."
 		echo -e "It is not possible to run a tmux session inside another tmux session"
 		echo -e "https://docs.linuxgsm.com/requirements/tmux#tmuxception"
-		core_exit.sh
+		#core_exit.sh
 	fi
 }
 
@@ -25,9 +25,9 @@ fn_check_is_in_screen(){
 		fn_print_information_nl "LinuxGSM creates a tmux session when starting the server."
 		echo -e "It is not possible to run a tmux session inside screen session"
 		echo -e "https://docs.linuxgsm.com/requirements/tmux#tmuxception"
-		core_exit.sh
+		#core_exit.sh
 	fi
 }
 
-fn_check_is_in_tmux
-fn_check_is_in_screen
+#fn_check_is_in_tmux
+#fn_check_is_in_screen
