@@ -42,7 +42,9 @@ check_status.sh
 if [ "${status}" != "0" ]; then
 	fn_print_ok_nl "Accessing console"
 	fn_script_log_pass "Console accessed"
-	tmux attach-session -t "${sessionname}"
+	#tmux -L linuxgsm attach-session -t "${sessionname}"
+	tmux -L linuxgsm select-window -t linuxgsm:"${sessionname}"
+	tmux -L linuxgsm a 
 	fn_print_ok_nl "Closing console"
 	fn_script_log_pass "Console closed"
 else
