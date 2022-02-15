@@ -9,7 +9,6 @@ commandname="UPDATE-LGSM"
 commandaction="Updating LinuxGSM"
 functionselfname="$(basename "$(readlink -f "${BASH_SOURCE[0]}")")"
 fn_firstcommand_set
-githubuser="JimTR"
 check.sh
 info_distro.sh
 
