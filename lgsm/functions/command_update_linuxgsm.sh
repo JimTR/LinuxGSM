@@ -180,9 +180,9 @@ if [ -f "${datadir}/${distroid}-${distroversioncsv}.csv" ]; then
 fi
 
 # Check ${datadir}/console.conf
-if [ -f "${datadir}/console.conf" ]; then
+if [ -f "${configdir}/console.conf" ]; then
 	echo -en "checking ${remotereponame} config console.conf...\c"
-	fn_script_log_info "Checking ${remotereponame} ${distroid}-${distroversioncsv}.csv"
+	fn_script_log_info "Checking ${remotereponame} console.conf"
 	if [ "${remotereponame}" == "GitHub" ]; then
 		curl --connect-timeout 10 -IsfL "https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${githubbranch}/lgsm/data/console.conf" 1>/dev/null
 	else
