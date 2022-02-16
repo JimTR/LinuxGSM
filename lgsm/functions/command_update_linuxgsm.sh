@@ -178,6 +178,40 @@ if [ -f "${datadir}/${distroid}-${distroversioncsv}.csv" ]; then
 		fn_script_log_pass "Checking ${remotereponame} ${distroid}-${distroversioncsv}.csv"
 	fi
 fi
+
+# Check ${datadir}/console.conf
+if [ -f "${datadir}/console.conf" ]; then
+	echo -en "checking ${remotereponame} config console.conf...\c"
+	fn_script_log_info "Checking ${remotereponame} ${distroid}-${distroversioncsv}.csv"
+	if [ "${remotereponame}" == "GitHub" ]; then
+		curl --connect-timeout 10 -IsfL "https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${githubbranch}/lgsm/data/console.conf" 1>/dev/null
+	else
+		curl --connect-timeout 10 -IsfL "https://bitbucket.org/${githubuser}/${githubrepo}/raw/${githubbranch}/lgsm/data/console.conf" 1>/dev/null
+	fi
+	if [ $? != "0" ]; then
+		fn_print_fail_eol_nl
+		fn_script_log_fatal "Checking ${remotereponame} console.conf"
+		fn_script_log_fatal "Curl returned error: $?"
+		core_exit.sh
+	fi
+
+	if [ "${remotereponame}" == "GitHub" ]; then
+		config_file_diff=$(diff "${configdir}/console.conf" <(curl --connect-timeout 10 -s "https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${githubbranch}/lgsm/data/console.conf"))
+	else
+		config_file_diff=$(diff "${configdir}/console.conf" <(curl --connect-timeout 10 -s "https://bitbucket.org/${githubuser}/${githubrepo}/raw/${githubbranch}/lgsm/data/console.conf"))
+	fi
+
+	if [ "${config_file_diff}" != "" ]; then
+		fn_print_update_eol_nl
+		fn_script_log_update "Checking ${remotereponame} console.conf"
+		rm -f "${datadir:?}/${distroid}-${distroversioncsv}.csv"
+		fn_fetch_file_github "lgsm/data" "console.conf" "${configdir}" "nochmodx" "norun" "noforce" "nohash"
+	else
+		fn_print_ok_eol_nl
+		fn_script_log_pass "Checking ${remotereponame} console.conf"
+	fi
+fi
+
 # Check and update modules.
 if [ -n "${functionsdir}" ]; then
 	if [ -d "${functionsdir}" ]; then
