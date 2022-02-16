@@ -204,7 +204,7 @@ if [ -f "${configdir}/console.conf" ]; then
 	if [ "${config_file_diff}" != "" ]; then
 		fn_print_update_eol_nl
 		fn_script_log_update "Checking ${remotereponame} console.conf"
-		rm -f "${datadir:?}/${distroid}-${distroversioncsv}.csv"
+		rm -f "${configdir}/console.conf"
 		fn_fetch_file_github "lgsm/data" "console.conf" "${configdir}" "nochmodx" "norun" "noforce" "nohash"
 	else
 		fn_print_ok_eol_nl

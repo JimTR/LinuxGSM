@@ -49,6 +49,8 @@ fn_default_config_remote(){
 			cp -nv "${lgsmdir}/config-default/config-game/${config}" "${servercfgdir}/${config}"
 		fi
 	done
+	# throw console.conf in here ${serverconfigdir} is now made
+	fn_fetch_file_github "lgsm/data" "console.conf" "${configdir}" "nochmodx" "norun" "noforce" "nohash"
 	fn_sleep_time
 }
 
