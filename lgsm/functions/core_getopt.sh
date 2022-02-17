@@ -24,6 +24,7 @@ cmd_monitor=( "m;monitor" "command_monitor.sh" "Check server status and restart 
 cmd_skeleton=( "sk;skeleton" "command_skeleton.sh" "Create a skeleton directory." )
 cmd_donate=( "do;donate" "command_donate.sh" "Donation options." )
 cmd_send=( "sd;send" "command_send.sh" "Send command to game server console." )
+cmd_pissup=( "pu;piss-up" "command_pissup.sh" "Have a piss up down the pub, fuck the game server !" )
 # Console servers only.
 cmd_console=( "c;console" "command_console.sh" "Access server console." )
 cmd_debug=( "d;debug" "command_debug.sh" "Start server directly in your terminal." )
@@ -56,10 +57,9 @@ cmd_dev_detect_ldd=( "dl;detect-ldd" "command_dev_detect_ldd.sh" "Detect require
 cmd_dev_query_raw=( "qr;query-raw" "command_dev_query_raw.sh" "The raw output of gamedig and gsquery." )
 cmd_dev_clear_functions=( "cf;clear-functions" "command_dev_clear_functions.sh" "Delete the contents of the functions dir." )
 
-
 ### Set specific opt here.
 
-currentopt=( "${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_monitor[@]}" "${cmd_test_alert[@]}" "${cmd_details[@]}" "${cmd_postdetails[@]}" "${cmd_skeleton[@]}" )
+currentopt=( "${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_monitor[@]}" "${cmd_test_alert[@]}" "${cmd_details[@]}" "${cmd_postdetails[@]}" "${cmd_pissup[@]}" "${cmd_skeleton[@]}" )
 
 # Update LinuxGSM.
 currentopt+=( "${cmd_update_linuxgsm[@]}" )
@@ -149,7 +149,6 @@ fi
 
 ## Donate.
 currentopt+=( "${cmd_donate[@]}" )
-
 ### Build list of available commands.
 optcommands=()
 index="0"
@@ -196,6 +195,8 @@ for i in "${optcommands[@]}"; do
 			for ((currcmdindex=1; currcmdindex <= currcmdamount; currcmdindex++)); do
 				if [ "$(echo -e "${currentopt[index]}" | awk -F ';' -v x=${currcmdindex} '{ print $x }')" == "${getopt}" ]; then
 					# Run command.
+					echo "$PWD"
+					echo "${currentopt[index+1]}"
 					eval "${currentopt[index+1]}"
 					# Exit should occur in modules. Should this not happen print an error
 					fn_print_error2_nl "Command did not exit correctly: ${getopt}"
