@@ -63,6 +63,8 @@ fn_stop_graceful_cmd(){
 		fn_script_log_error "Graceful: sending \"${1}\": FAIL"
 	fi
 }
+sql="UPDATE servers SET starttime = 0 , running = 0  WHERE servers.host_name like '${sessionname}';"
+mysql -u "${user}" -p"${passwd}" -D "${database}" -h "${db_host}" -e "${sql}" 2>/dev/null
 
 # Attempts graceful shutdown of goldsrc using rcon 'quit' command.
 # There is only a 3 second delay before a forced a tmux shutdown

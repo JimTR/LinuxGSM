@@ -79,7 +79,7 @@ fn_start_tmux(){
 	fi
 	tmux -L linuxgsm ls &>/dev/null 
 	tmux_running=$?
-	
+	start_time=$(date +%s) 
 	if [ "${tmux_running}" == "0" ]; then
 		tmux -L linuxgsm  new-window -n "${sessionname}" -t linuxgsm "${preexecutable} ${executable} ${startparameters}" 2> "${lgsmlogdir}/.${selfname}-tmux-error.tmp"
 		
@@ -87,6 +87,9 @@ fn_start_tmux(){
 		tmux -L linuxgsm -f "${configdir}"/console.conf new -d -x "${sessionwidth}" -y "${sessionheight}" -s linuxgsm "${preexecutable} ${executable} ${startparameters} " 2> "${lgsmlogdir}/.${selfname}-tmux-error.tmp"
  		tmux -L linuxgsm rename-window "${sessionname}"
 	fi
+	# Update database
+	sql="UPDATE servers SET starttime = ${start_time} , running = 1  WHERE servers.host_name like '${sessionname}';"
+	mysql -u "${user}" -p"${passwd}" -D "${database}" -h "${db_host}" -e "${sql}" 2>/dev/null
 	# Create logfile.
 	touch "${consolelog}"
 
