@@ -195,8 +195,6 @@ for i in "${optcommands[@]}"; do
 			for ((currcmdindex=1; currcmdindex <= currcmdamount; currcmdindex++)); do
 				if [ "$(echo -e "${currentopt[index]}" | awk -F ';' -v x=${currcmdindex} '{ print $x }')" == "${getopt}" ]; then
 					# Run command.
-					echo "$PWD"
-					echo "${currentopt[index+1]}"
 					eval "${currentopt[index+1]}"
 					# Exit should occur in modules. Should this not happen print an error
 					fn_print_error2_nl "Command did not exit correctly: ${getopt}"
