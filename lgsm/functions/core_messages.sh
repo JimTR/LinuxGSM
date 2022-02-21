@@ -133,18 +133,18 @@ fn_script_log_update(){
 # [ .... ]
 fn_print_dots(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[ .... ] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[ .... ] $*"
+		echo -en "${creeol} $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_dots_nl(){
 	if [ "${commandaction}" ]; then
-		echo -e "${creeol}[ .... ] ${commandaction} ${selfname}: $*"
+		echo -e "${creeol} ${commandaction} ${selfname}: $*"
 	else
-		echo -e "${creeol}[ .... ] $*"
+		echo -e "${creeol} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -153,18 +153,18 @@ fn_print_dots_nl(){
 # [  OK  ]
 fn_print_ok(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${green}  OK  ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${green}  OK  ${default}] $*"
+		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_ok_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${green}  OK  ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${green}  OK  ${default}] $*"
+		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -173,18 +173,18 @@ fn_print_ok_nl(){
 # [ FAIL ]
 fn_print_fail(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${red} FAIL ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}[${red} \xe2\x80\xbc ${default}] ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${red} FAIL ${default}] $*"
+		echo -en "${creeol}[${red} \xe2\x80\xbc ${default}] $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_fail_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${red} FAIL ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${red} \xe2\x80\xbc ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${red} FAIL ${default}] $*"
+		echo -en "${creeol}${red} \xe2\x80\xbc ${default} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -193,18 +193,18 @@ fn_print_fail_nl(){
 # [ ERROR ]
 fn_print_error(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${red} ERROR ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${red} ERROR ${default}] $*"
+		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_error_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${red} ERROR ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${red} ERROR ${default}] $*"
+		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -213,18 +213,18 @@ fn_print_error_nl(){
 # [ WARN ]
 fn_print_warn(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${lightyellow} WARN ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}[${lightyellow} \xe2\x84\xb9 ${default}] ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${lightyellow} WARN ${default}] $*"
+		echo -en "${creeol}[${lightyellow} \xe2\x84\xb9 ${default}] $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_warn_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${lightyellow} WARN ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}[${lightyellow} \xe2\x84\xb9 ${default}] ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${lightyellow} WARN ${default}] $*"
+		echo -en "${creeol}[${lightyellow} \xe2\x84\xb9 ${default}] $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -233,18 +233,18 @@ fn_print_warn_nl(){
 # [ INFO ]
 fn_print_info(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${cyan} INFO ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${cyan} INFO ${default}] $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_info_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${cyan} INFO ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${cyan} INFO ${default}] $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -253,18 +253,18 @@ fn_print_info_nl(){
 # [ START ]
 fn_print_start(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${lightgreen} START ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${lightgreen} \xf0\x9f\x91\xbe ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${lightgreen} START ${default}] $*"
+		echo -en "${creeol}${lightgreen} \xf0\x9f\x91\xbe ${default} $*"
 	fi
 	fn_sleep_time
 }
 
 fn_print_start_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}[${lightgreen} START ${default}] ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${lightgreen} \xf0\x9f\x91\xbe ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}[${lightgreen} START ${default}] $*"
+		echo -en "${creeol}${lightgreen} \xf0\x9f\x91\xbe ${default} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -399,7 +399,7 @@ fn_print_no_eol_nl(){
 
 # OK
 fn_print_ok_eol(){
-	echo -en "${green}OK${default}"
+	echo -en "${green}OKs${default}"
 	fn_sleep_time
 }
 

@@ -211,7 +211,7 @@ if [ "${updateonstart}" == "yes" ]||[ "${updateonstart}" == "1" ]||[ "${updateon
 	fn_firstcommand_reset
 fi
 
-fn_print_dots "${servername}"
+#fn_print_dots "${servername}"
 
 if [ "${shortname}" == "ts3" ]; then
 	fn_start_teamspeak3
