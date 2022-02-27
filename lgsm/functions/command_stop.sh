@@ -40,21 +40,21 @@ fn_stop_graceful_ctrlc(){
 # Usage: fn_stop_graceful_cmd "console_command" "timeout_in_seconds"
 # e.g.: fn_stop_graceful_cmd "quit" "30"
 fn_stop_graceful_cmd(){
-	fn_print_dots "Graceful: sending \"${1}\""
-	fn_script_log_info "Graceful: sending \"${1}\""
+	fn_print_dots "Graceful: sending N \"${1}\""
+	fn_script_log_info "Graceful: sending N \"${1}\""
 	# Sends specific stop command.
 	tmux -L linuxgsm send -t "${sessionname}" ENTER "${1}" ENTER > /dev/null 2>&1
 	# Waits up to ${seconds} seconds giving the server time to shutdown gracefully.
 	for ((seconds=1; seconds<=${2}; seconds++)); do
 		check_status.sh
 		if [ "${status}" == "0" ]; then
-			fn_print_ok "Graceful: sending \"${1}\": ${seconds}: "
+			fn_print_ok "Graceful: sending N \"${1}\": ${seconds}: "
 			fn_print_ok_eol_nl
-			fn_script_log_pass "Graceful: sending \"${1}\": OK: ${seconds} seconds"
+			fn_script_log_pass "Graceful: sending N \"${1}\": OK: ${seconds} seconds"
 			break
 		fi
 		sleep 1
-		fn_print_dots "Graceful: sending \"${1}\": ${seconds}"
+		fn_print_dots "Graceful: sending N \"${1}\": ${seconds}"
 	done
 	check_status.sh
 	if [ "${status}" != "0" ]; then
@@ -70,18 +70,19 @@ mysql -u "${user}" -p"${passwd}" -D "${database}" -h "${db_host}" -e "${sql}" 2>
 # There is only a 3 second delay before a forced a tmux shutdown
 # as GoldSrc servers 'quit' command does a restart rather than shutdown.
 fn_stop_graceful_goldsrc(){
-	fn_print_dots "Graceful: sending \"quit\""
-	fn_script_log_info "Graceful: sending \"quit\""
+	# fn_print_dots "Graceful: sending G \"quit\""
+	fn_script_log_info "Graceful: sending G \"quit\""
 	# sends quit
 	tmux -L linuxgsm send -t "${sessionname}" quit ENTER > /dev/null 2>&1
 	# Waits 3 seconds as goldsrc servers restart with the quit command.
 	for seconds in {1..3}; do
 		sleep 1
-		fn_print_dots "Graceful: sending \"quit\": ${seconds}"
+		#fn_print_dots "Graceful: sending G \"quit\": ${seconds}"
 	done
-	fn_print_ok "Graceful: sending \"quit\": ${seconds}: "
-	fn_print_ok_eol_nl
+	#fn_print_ok "Graceful: sending G \"quit\": ${seconds}: "
+	#fn_print_ok_eol_nl
 	fn_script_log_pass "Graceful: sending \"quit\": OK: ${seconds} seconds"
+        # echo "done gold source function";
 }
 
 # telnet command for sdtd graceful shutdown.
@@ -237,7 +238,7 @@ fn_stop_graceful_select(){
 }
 
 fn_stop_tmux(){
-	fn_print_dots "${servername}"
+	#fn_print_dots "${servername}"
 	fn_script_log_info "tmux kill-session: ${sessionname}: ${servername}"
 	# Kill tmux session.
 	tmux -L linuxgsm kill-window -t "${sessionname}" > /dev/null 2>&1
@@ -245,8 +246,8 @@ fn_stop_tmux(){
 	check_status.sh
 	if [ "${status}" == "0" ]; then
 		tmux -L linuxgsm move-window -r
-		fn_print_ok_nl "${servername}"
-		fn_script_log_pass "Stopped ${servername}"
+		fn_print_ok_eol_nl
+		#fn_script_log_pass "Stopped ${servername}"
 	else
 		fn_print_fail_nl "Unable to stop ${servername}"
 		fn_script_log_fatal "Unable to stop ${servername}"
@@ -261,18 +262,23 @@ fn_stop_pre_check(){
 	else
 		# Select graceful shutdown.
 		fn_stop_graceful_select
+		# echo "returned from fn_stop";
 	fi
 	# Check status again, a kill tmux session if graceful shutdown failed.
+	# sleep 1
 	check_status.sh
+	# echo "back from check_status with ${status}";
 	if [ "${status}" != "0" ]; then
+		# echo "going to fn_stop_tmux";
 		fn_stop_tmux
+		# echo "returned fro fn_stop_tmux";
 	fi
 }
 
 check.sh
-fn_print_dots "${servername}"
-
-info_game.sh
+# fn_print_dots "${servername}"
+echo -n "Stopping ${selfname}"
+#info_game.sh
 fn_stop_pre_check
 # Remove lockfile.
 if [ -f "${lockdir}/${selfname}.lock" ]; then

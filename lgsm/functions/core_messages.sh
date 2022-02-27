@@ -153,18 +153,18 @@ fn_print_dots_nl(){
 # [  OK  ]
 fn_print_ok(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${commandaction} ${selfname} \xf0\x9f\x86\x97";
 	else
-		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} $*"
+		echo -en "${creeol} \xf0\x9f\x86\x97 "
 	fi
 	fn_sleep_time
 }
 
 fn_print_ok_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${commandaction} ${selfname} \xf0\x9f\x86\x97 ${default} $*"
 	else
-		echo -en "${creeol}${green} \xf0\x9f\x86\x97 ${default} $*"
+		echo -en "${creeol}${green}here \xf0\x9f\x86\x97 ${default} $*"
 	fi
 	fn_sleep_time
 	echo -en "\n"
@@ -195,7 +195,7 @@ fn_print_error(){
 	if [ "${commandaction}" ]; then
 		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} ${commandaction} ${selfname}: $*"
 	else
-		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} $*"
+0		echo -en "${creeol}${red} \xe2\x9b\x94\xef ${default} $*"
 	fi
 	fn_sleep_time
 }
@@ -233,7 +233,7 @@ fn_print_warn_nl(){
 # [ INFO ]
 fn_print_info(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	else
 		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	fi
@@ -242,7 +242,7 @@ fn_print_info(){
 
 fn_print_info_nl(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} ${commandaction} ${selfname}: $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	else
 		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	fi
@@ -294,45 +294,45 @@ fn_print_complete_nl(){
 
 # Failure!
 fn_print_failure(){
-	echo -en "${red}Failure!${default} $*"
+	echo -en "${red} \xe2\x84\xb9 Failure!${default} $*"
 	fn_sleep_time
 }
 
 fn_print_failure_nl(){
-	echo -e "${red}Failure!${default} $*"
+	echo -e "${red} \xe2\x84\xb9 Failure!${default} $*"
 	fn_sleep_time
 }
 
 # Error!
 fn_print_error2(){
-	echo -en "${red}Error!${default} $*"
+	echo -en "${red} \xe2\x84\xb9 Error!${default} $*"
 	fn_sleep_time
 }
 
 fn_print_error2_nl(){
-	echo -e "${red}Error!${default} $*"
+	echo -e "${red} \xe2\x84\xb9 Error!${default} $*"
 	fn_sleep_time
 }
 
 # Warning!
 fn_print_warning(){
-	echo -en "${lightyellow}Warning!${default} $*"
+	echo -en "${lightyellow}\xe2\x84\xb9 Warning!${default} $*"
 	fn_sleep_time
 }
 
 fn_print_warning_nl(){
-	echo -e "${lightyellow}Warning!${default} $*"
+	echo -e "${lightyellow}\xe2\x84\xb9 Warning!${default} $*"
 	fn_sleep_time
 }
 
 # Information!
 fn_print_information(){
-	echo -en "${cyan}Information!${default} $*"
+	echo -en "${cyan} \xe2\x84\xb9${default} $*"
 	fn_sleep_time
 }
 
 fn_print_information_nl(){
-	echo -e "${cyan}Information!${default} $*"
+	echo -e "${cyan} \xe2\x84\xb9${default} $*"
 	fn_sleep_time
 }
 
@@ -399,12 +399,12 @@ fn_print_no_eol_nl(){
 
 # OK
 fn_print_ok_eol(){
-	echo -en "${green}OKs${default}"
+	echo -en " \xf0\x9f\x86\x97 "
 	fn_sleep_time
 }
 
 fn_print_ok_eol_nl(){
-	echo -e "${green}OK${default}"
+	echo -e " \xf0\x9f\x86\x97 "
 	fn_sleep_time
 }
 
@@ -487,45 +487,45 @@ fn_print_checking_eol_nl(){
 
 # DELAY
 fn_print_delay_eol(){
-	echo -en "${green}DELAY${default}"
+	echo -en "${green}\xf0\x9f\x92\xa4${default}"
 	fn_sleep_time
 }
 
 fn_print_delay_eol_nl(){
-	echo -e "${green}DELAY${default}"
+	echo -e "${green}\xf0\x9f\x92\xa4${default}"
 	fn_sleep_time
 }
 
 # CANCELED
 fn_print_canceled_eol(){
-	echo -en "${lightyellow}CANCELED${default}"
+	echo -en "${lightyellow}\xe2\x9d\x8c\x0a${default}"
 	fn_sleep_time
 }
 
 fn_print_canceled_eol_nl(){
-	echo -e "${lightyellow}CANCELED${default}"
+	echo -e "${lightyellow}\xe2\x9d\x8c\x0a${default}"
 	fn_sleep_time
 }
 
 # REMOVED
 fn_print_removed_eol(){
-	echo -en "${red}REMOVED${default}"
+	echo -en "${red}\xf0\x9f\x9a\xae${default}"
 	fn_sleep_time
 }
 
 fn_print_removed_eol_nl(){
-	echo -e "${red}REMOVED${default}"
+	echo -e "${red}\xf0\x9f\x9a\xae${default}"
 	fn_sleep_time
 }
 
 # UPDATE
 fn_print_update_eol(){
-	echo -en "${cyan}UPDATE${default}"
+	echo -en "${cyan}\xe2\xac\x87\xef\xb8\x8f${default}"
 	fn_sleep_time
 }
 
 fn_print_update_eol_nl(){
-	echo -e "${cyan}UPDATE${default}"
+	echo -e "${cyan}\xe2\xac\x87\xef\xb8\x8f${default}"
 	fn_sleep_time
 }
 

@@ -9,6 +9,7 @@ commandname="START"
 commandaction="Starting"
 functionselfname="$(basename "$(readlink -f "${BASH_SOURCE[0]}")")"
 fn_firstcommand_set
+echo -n "Starting ${selfname}"
 fn_start_teamspeak3(){
 	if [ ! -f "${servercfgfullpath}" ]; then
 		fn_print_warn_nl "${servercfgfullpath} is missing"
@@ -178,7 +179,7 @@ fn_start_tmux(){
 		fi
 		core_exit.sh
 	else
-		fn_print_ok "${servername}"
+		fn_print_ok_eol
 		fn_script_log_pass "Started ${servername}"
 	fi
 	rm "${lgsmlogdir:?}/.${selfname}-tmux-error.tmp" 2>/dev/null
@@ -190,8 +191,8 @@ check.sh
 # Is the server already started.
 # $status comes from check_status.sh, which is run by check.sh for this command
 if [ "${status}" != "0" ]; then
-	fn_print_dots "${servername}"
-	fn_print_info_nl "${servername} is already running"
+	#fn_print_dots "${servername}"
+	fn_print_info_nl "${selfname} is already running"
 	fn_script_log_error "${servername} is already running"
 	if [ -z "${exitbypass}" ]; then
 		core_exit.sh
@@ -200,7 +201,7 @@ fi
 if [ -z "${fixbypass}" ]; then
 	fix.sh
 fi
-info_game.sh
+#info_game.sh
 core_logs.sh
 
 # Will check for updates is updateonstart is yes.
@@ -212,7 +213,7 @@ if [ "${updateonstart}" == "yes" ]||[ "${updateonstart}" == "1" ]||[ "${updateon
 fi
 
 #fn_print_dots "${servername}"
-
+# echo -n "Starting ${selfname}"
 if [ "${shortname}" == "ts3" ]; then
 	fn_start_teamspeak3
 elif [ "${shortname}" == "jk2" ]; then
