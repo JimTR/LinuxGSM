@@ -233,7 +233,7 @@ fn_print_warn_nl(){
 # [ INFO ]
 fn_print_info(){
 	if [ "${commandaction}" ]; then
-		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
+		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} ${selfname}"
 	else
 		echo -en "${creeol}${cyan} \xe2\x84\xb9${default} $*"
 	fi

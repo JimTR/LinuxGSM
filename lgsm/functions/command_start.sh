@@ -202,7 +202,7 @@ if [ -z "${fixbypass}" ]; then
 	fix.sh
 fi
 #info_game.sh
-core_logs.sh
+#core_logs.sh
 
 # Will check for updates is updateonstart is yes.
 if [ "${updateonstart}" == "yes" ]||[ "${updateonstart}" == "1" ]||[ "${updateonstart}" == "on" ]; then

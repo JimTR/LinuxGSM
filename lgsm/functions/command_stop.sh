@@ -40,7 +40,7 @@ fn_stop_graceful_ctrlc(){
 # Usage: fn_stop_graceful_cmd "console_command" "timeout_in_seconds"
 # e.g.: fn_stop_graceful_cmd "quit" "30"
 fn_stop_graceful_cmd(){
-	fn_print_dots "Graceful: sending N \"${1}\""
+	# fn_print_dots "Graceful: sending N \"${1}\""
 	fn_script_log_info "Graceful: sending N \"${1}\""
 	# Sends specific stop command.
 	tmux -L linuxgsm send -t "${sessionname}" ENTER "${1}" ENTER > /dev/null 2>&1
@@ -48,13 +48,13 @@ fn_stop_graceful_cmd(){
 	for ((seconds=1; seconds<=${2}; seconds++)); do
 		check_status.sh
 		if [ "${status}" == "0" ]; then
-			fn_print_ok "Graceful: sending N \"${1}\": ${seconds}: "
+			#fn_print_ok "Graceful: sending N \"${1}\": ${seconds}: "
 			fn_print_ok_eol_nl
 			fn_script_log_pass "Graceful: sending N \"${1}\": OK: ${seconds} seconds"
 			break
 		fi
 		sleep 1
-		fn_print_dots "Graceful: sending N \"${1}\": ${seconds}"
+		#fn_print_dots "Graceful: sending N \"${1}\": ${seconds}"
 	done
 	check_status.sh
 	if [ "${status}" != "0" ]; then
@@ -257,8 +257,8 @@ fn_stop_tmux(){
 # Checks if the server is already stopped.
 fn_stop_pre_check(){
 	if [ "${status}" == "0" ]; then
-		fn_print_info_nl "${servername} is already stopped"
-		fn_script_log_error "${servername} is already stopped"
+		fn_print_info_nl "${selfname} is not running"
+		fn_script_log_error "${selfname} is not running"
 	else
 		# Select graceful shutdown.
 		fn_stop_graceful_select
