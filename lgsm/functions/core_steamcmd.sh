@@ -174,9 +174,11 @@ fn_update_steamcmd_remotebuild(){
 	fi
 
 	# Removes appinfo.vdf as a fix for not always getting up to date version info from SteamCMD.
-	if [ "$(find "${HOME}" -type f -name "appinfo.vdf" | wc -l)" -ne "0" ]; then
-		find "${HOME}" -type f -name "appinfo.vdf" -exec rm -f {} \;
-	fi
+	#if [ "$(find "${HOME}" -type f -name "appinfo.vdf" | wc -l)" -ne "0" ]; then
+	#	find "${HOME}" -type f -name "appinfo.vdf" -exec rm -f {} \;
+	#fi
+	vdf=$(tail -1 "${HOME}"/.steam/steam/logs/appinfo_log.txt |cut -d' '  -f 6 )
+	rm "${vdf}"
 
 	# password for branch not needed to check the buildid
 	remotebuild=$(${steamcmdcommand} +login "${steamuser}" "${steampass}" +app_info_update 1 +app_info_print "${appid}" +quit 2>/dev/null | sed -e '/"branches"/,/^}/!d' | sed -n "/\"${branch}\"/,/}/p" | grep -m 1 buildid | tr -cd '[:digit:]')
