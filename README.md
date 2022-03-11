@@ -27,7 +27,7 @@ LinuxGSM will run on popular distros as long as the minimum requirements are met
 
 * Ubuntu
 * Debian
-* CentOS
+* <del>CentOS</del> working on this
 
 Other distros are likely to work but are not fully tested.
 
